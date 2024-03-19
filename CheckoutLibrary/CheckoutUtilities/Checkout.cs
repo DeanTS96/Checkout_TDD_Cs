@@ -7,7 +7,7 @@ public class Checkout
     {
         if(!string.IsNullOrEmpty(item))
         {
-            ItemList[item] = ItemList.ContainsKey(item) ? ItemList[item] + 1: 1;
+            ItemList[item] = ItemList.TryGetValue(item, out int value) ? value + 1: 1;
         }
     }
 }
