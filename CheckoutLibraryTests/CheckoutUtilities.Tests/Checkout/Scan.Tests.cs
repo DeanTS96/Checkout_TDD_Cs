@@ -2,7 +2,7 @@ using CheckoutLibrary;
 namespace CheckoutLibraryTests;
 
 [TestClass]
-public class CheckoutMethodTests
+public class ScanTests
 {
     Dictionary<string, int> prices = new Dictionary<string, int>();
     Dictionary<string, int> specialPrices = new Dictionary<string, int>();
