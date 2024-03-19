@@ -10,7 +10,11 @@ public class Checkout
         bool containsOnlyLetters = Regex.IsMatch(item, RegexPatterns.LettersOnly);
         if(!string.IsNullOrEmpty(item) && containsOnlyLetters)
         {
-            ItemList[item] = ItemList.TryGetValue(item, out int value) ? value + 1: 1;
+            AddItemToItemList(item);
         }
+    }
+    private void AddItemToItemList(string item)
+    {
+        ItemList[item] = ItemList.TryGetValue(item, out int value) ? value + 1: 1;
     }
 }
