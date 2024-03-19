@@ -9,3 +9,4 @@
 /home/dean/test/TDD_Cs_CheckoutApp/CheckoutLibrary/obj/Debug/net8.0/refint/CheckoutLibrary.dll
 /home/dean/test/TDD_Cs_CheckoutApp/CheckoutLibrary/obj/Debug/net8.0/CheckoutLibrary.pdb
 /home/dean/test/TDD_Cs_CheckoutApp/CheckoutLibrary/obj/Debug/net8.0/ref/CheckoutLibrary.dll
+/home/dean/test/TDD_Cs_CheckoutApp/CheckoutLibrary/obj/Debug/net8.0/CheckoutLibrary.sourcelink.json
