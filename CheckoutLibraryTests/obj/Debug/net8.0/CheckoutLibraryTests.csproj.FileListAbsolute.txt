@@ -111,3 +111,4 @@
 /home/dean/test/TDD_Cs_CheckoutApp/CheckoutLibraryTests/obj/Debug/net8.0/CheckoutLibraryTests.pdb
 /home/dean/test/TDD_Cs_CheckoutApp/CheckoutLibraryTests/obj/Debug/net8.0/CheckoutLibraryTests.genruntimeconfig.cache
 /home/dean/test/TDD_Cs_CheckoutApp/CheckoutLibraryTests/obj/Debug/net8.0/ref/CheckoutLibraryTests.dll
+/home/dean/test/TDD_Cs_CheckoutApp/CheckoutLibraryTests/obj/Debug/net8.0/CheckoutLibraryTests.sourcelink.json
