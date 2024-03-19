@@ -6,13 +6,22 @@ public class CheckoutMethodTests
 {
     //Happy Tests
     [TestMethod]
-    public void ScanMethod_When_Passed_Single_Character_Adds_Item_To_ItemList()
+    public void ScanMethod_When_Passed_Single_Correct_Character_Adds_Item_To_ItemList()
     {
         Checkout checkout = new Checkout();
         checkout.Scan("A");
         bool IsInItemList = checkout.ItemList.ContainsKey("A");
 
         Assert.IsTrue(IsInItemList, $"Scanned item is added to ItemList. EXPECTED: true; ACTUAL: {IsInItemList}");
+    }
+    [TestMethod]
+    public void ScanMethod_When_Passed_Multiple_character_Length_Correct_String_Adds_Item_To_ItemList()
+    {
+        Checkout checkout = new Checkout();
+        checkout.Scan("ABC");
+        bool IsInItemList = checkout.ItemList.ContainsKey("ABC");
+
+        Assert.IsTrue(IsInItemList, $"Scanned item of multiple characters is added to ItemList. EXPECTED: true; ACTUAL: {IsInItemList}");
     }
     //Bad Tests
     [TestMethod]
