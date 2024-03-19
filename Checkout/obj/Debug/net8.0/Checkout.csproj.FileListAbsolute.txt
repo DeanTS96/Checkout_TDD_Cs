@@ -16,3 +16,4 @@
 /home/dean/test/TDD_Cs_CheckoutApp/Checkout/obj/Debug/net8.0/Checkout.pdb
 /home/dean/test/TDD_Cs_CheckoutApp/Checkout/obj/Debug/net8.0/Checkout.genruntimeconfig.cache
 /home/dean/test/TDD_Cs_CheckoutApp/Checkout/obj/Debug/net8.0/ref/Checkout.dll
+/home/dean/test/TDD_Cs_CheckoutApp/Checkout/obj/Debug/net8.0/Checkout.sourcelink.json
