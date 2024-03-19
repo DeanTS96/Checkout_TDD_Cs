@@ -1,10 +1,11 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Runtime.InteropServices.Marshalling;
+using System.Text.RegularExpressions;
 using Utilities;
 namespace CheckoutLibrary;
 
 public class Checkout
 {
-    public Dictionary<string, int> ItemList = new Dictionary<string, int>();
+    public readonly Dictionary<string, int> ItemList = new Dictionary<string, int>();
     public void Scan(string item)
     {
         bool containsOnlyLetters = Regex.IsMatch(item, RegexPatterns.LettersOnly);
