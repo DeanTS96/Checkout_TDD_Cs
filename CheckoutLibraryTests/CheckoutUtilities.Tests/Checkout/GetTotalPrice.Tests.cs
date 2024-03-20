@@ -147,6 +147,31 @@ public class GetTotalPriceTests
         Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
     }
     [TestMethod]
+    public void Method_Returns_Correct_Price_For_A_Special_price_Item_That_Requires_Multiples_Of_That_Item_To_Get_The_Special_Price_And_There_Is_Still_An_Item_That_Matches_The_Deal_Item_Left_Over()
+    {
+        Dictionary<string, int> prices = new Dictionary<string, int>()
+        {
+            {"C", 90},
+        };
+        Dictionary<string, Dictionary<string, int>> specialPrices = new Dictionary<string, Dictionary<string, int>>()
+        {
+            {"C", new Dictionary<string, int>
+                {
+                   {"quantity", 2}, 
+                   {"price", 150},
+                }
+            },
+        };
+        Checkout checkout = new Checkout(prices, specialPrices);
+        checkout.Scan("C");
+        checkout.Scan("C");
+        checkout.Scan("C");
+        int expected = 240;
+        int actual = checkout.GetTotalPrice();
+
+        Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
+    }
+    [TestMethod]
     public void Method_Returns_Correct_Price_For_A_Special_price_Item_That_Requires_Multiples_Of_That_Item_To_Get_The_Special_Price_And_There_Are_Multiple_Deal_Quantities_Scanned()
     {
         Dictionary<string, int> prices = new Dictionary<string, int>()
