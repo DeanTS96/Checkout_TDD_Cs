@@ -25,7 +25,7 @@ public class Checkout
         if(!string.IsNullOrEmpty(item) && containsOnlyLetters)
         {
             AddItemToItemList(item);
-            Total = _prices[item];
+            Total += _prices[item];
         }
     }
     private void AddItemToItemList(string item)
@@ -35,6 +35,11 @@ public class Checkout
     }
     public int GetTotalPrice()
     {
+        /*foreach(KeyValuePair<string, int> pair in ItemList)
+        {
+            (string item, int quantity) = pair;
+            Total += _prices[item];
+        }*/
         return Total;
     }
 }

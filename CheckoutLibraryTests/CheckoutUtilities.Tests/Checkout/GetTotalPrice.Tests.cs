@@ -40,15 +40,14 @@ public class GetTotalPriceTests
         Dictionary<string, int> prices = new Dictionary<string, int>()
         {
             {"A", 30},
-            {"B", 20},
-            {"C", 60}
+            {"B", 20}
         };
         Dictionary<string, int> specialPrices = new Dictionary<string, int>();
         Checkout checkout = new Checkout(prices, specialPrices);
         checkout.Scan("A");
         checkout.Scan("B");
-        checkout.Scan("B");
-        int expected = 70;
+        checkout.Scan("A");
+        int expected = 80;
         int actual = checkout.GetTotalPrice();
 
         Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
