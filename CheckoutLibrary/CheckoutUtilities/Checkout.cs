@@ -54,12 +54,14 @@ public class Checkout
     }
     public int GetTotalPrice()
     {
-        foreach(string item in ItemList.Keys)
+        foreach(KeyValuePair<string, int> pair in ItemList)
         {
-            //KeyValuePair<string, int> pair in ItemList
+            string item = pair.Key;
             if(_specialPrices.TryGetValue(item, out Dictionary<string, int> ?value))
             {
-                Total -= CalculateSavings(item, value["quantity"], value["price"]);
+                int savings = CalculateSavings(item, value["quantity"], value["price"]);
+                int numOfDeals = pair.Value / value["quantity"];
+                Total -= savings*numOfDeals;
             }
         }
         return Total;

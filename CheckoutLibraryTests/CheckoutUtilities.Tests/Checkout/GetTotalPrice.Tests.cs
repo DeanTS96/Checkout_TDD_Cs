@@ -91,7 +91,7 @@ public class GetTotalPriceTests
 
         Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
     }
-        [TestMethod]
+    [TestMethod]
     public void Method_Returns_Correct_Price_When_Multiple_Items_Have_Been_Scanned_With_Special_Prices()
     {
         Dictionary<string, int> prices = new Dictionary<string, int>()
@@ -122,7 +122,7 @@ public class GetTotalPriceTests
 
         Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
     }
-            [TestMethod]
+    [TestMethod]
     public void Method_Returns_Correct_Price_For_A_Special_price_Item_That_Requires_Multiples_Of_That_Item_To_Get_The_Special_Price()
     {
         Dictionary<string, int> prices = new Dictionary<string, int>()
@@ -142,6 +142,32 @@ public class GetTotalPriceTests
         checkout.Scan("C");
         checkout.Scan("C");
         int expected = 150;
+        int actual = checkout.GetTotalPrice();
+
+        Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
+    }
+    [TestMethod]
+    public void Method_Returns_Correct_Price_For_A_Special_price_Item_That_Requires_Multiples_Of_That_Item_To_Get_The_Special_Price_And_There_Are_Multiple_Deal_Quantities_Scanned()
+    {
+        Dictionary<string, int> prices = new Dictionary<string, int>()
+        {
+            {"C", 90},
+        };
+        Dictionary<string, Dictionary<string, int>> specialPrices = new Dictionary<string, Dictionary<string, int>>()
+        {
+            {"C", new Dictionary<string, int>
+                {
+                   {"quantity", 2}, 
+                   {"price", 150},
+                }
+            },
+        };
+        Checkout checkout = new Checkout(prices, specialPrices);
+        checkout.Scan("C");
+        checkout.Scan("C");
+        checkout.Scan("C");
+        checkout.Scan("C");
+        int expected = 300;
         int actual = checkout.GetTotalPrice();
 
         Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
