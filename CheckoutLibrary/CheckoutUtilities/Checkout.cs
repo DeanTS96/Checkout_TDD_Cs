@@ -5,6 +5,7 @@ namespace CheckoutLibrary;
 public class Checkout
 {
     private int _total = 0;
+    private int _savings = 0;
     private readonly Dictionary<string, int> _prices;
     private readonly Dictionary<string, Dictionary<string, int>> _specialPrices;
     public readonly Dictionary<string, int> ItemList = new Dictionary<string, int>();
@@ -13,6 +14,11 @@ public class Checkout
     { 
         get { return _total; }
         set { _total = value; }
+    }
+    public int Savings 
+    { 
+        get { return _savings; }
+        set { _savings = value; }
     }
     public Checkout(Dictionary<string, int> prices, Dictionary<string, Dictionary<string, int>> specialPrices)
     {
@@ -67,9 +73,9 @@ public class Checkout
             {
                 int specialPricePrice = specialPrice["price"];
                 int specialPriceQuantity = specialPrice["quantity"];
-                Total -= CalculateTotalSavingsForItem(item, itemQuantity, specialPriceQuantity, specialPricePrice);
+                Savings += CalculateTotalSavingsForItem(item, itemQuantity, specialPriceQuantity, specialPricePrice);
             }
         }
-        return Total;
+        return Total-Savings;
     }
 }
