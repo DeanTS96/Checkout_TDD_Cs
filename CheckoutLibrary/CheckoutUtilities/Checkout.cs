@@ -71,9 +71,7 @@ public class Checkout
             int itemQuantity = pair.Value;
             if(_specialPrices.TryGetValue(item, out Dictionary<string, int> ?specialPrice))
             {
-                int specialPricePrice = specialPrice["price"];
-                int specialPriceQuantity = specialPrice["quantity"];
-                Savings += CalculateTotalSavingsForItem(item, itemQuantity, specialPriceQuantity, specialPricePrice);
+                Savings += CalculateTotalSavingsForItem(item, itemQuantity, specialPrice["quantity"], specialPrice["price"]);
             }
         }
     }
