@@ -48,20 +48,26 @@ public class Checkout
         int itemQuantity = GetQuantity(item);
         ItemList[item] = itemQuantity > 0 ? itemQuantity + 1: 1;
     }
-    private int CalculateSavings(string item, int quantity, int specialPrice)
+    private int CalculateSavingsPerDeal(string item, int quantity, int specialPrice)
     {
             return GetPrice(item)*quantity - specialPrice;
+    }
+    private int CalculateTotalSavingsForItem(string item, int itemQuantity, int specialPriceQuantity, int specialPricePrice)
+    {
+        int numOfDeals = itemQuantity / specialPriceQuantity;
+        return numOfDeals*CalculateSavingsPerDeal(item, specialPriceQuantity, specialPricePrice);
     }
     public int GetTotalPrice()
     {
         foreach(KeyValuePair<string, int> pair in ItemList)
         {
             string item = pair.Key;
-            if(_specialPrices.TryGetValue(item, out Dictionary<string, int> ?value))
+            int itemQuantity = pair.Value;
+            if(_specialPrices.TryGetValue(item, out Dictionary<string, int> ?specialPrice))
             {
-                int savings = CalculateSavings(item, value["quantity"], value["price"]);
-                int numOfDeals = pair.Value / value["quantity"];
-                Total -= savings*numOfDeals;
+                int specialPricePrice = specialPrice["price"];
+                int specialPriceQuantity = specialPrice["quantity"];
+                Total -= CalculateTotalSavingsForItem(item, itemQuantity, specialPriceQuantity, specialPricePrice);
             }
         }
         return Total;
