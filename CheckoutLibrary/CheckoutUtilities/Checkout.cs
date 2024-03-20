@@ -9,7 +9,11 @@ public class Checkout
     private readonly Dictionary<string, int> _specialPrices;
     public readonly Dictionary<string, int> ItemList = new Dictionary<string, int>();
 
-    private int Total { get; set;}
+    public int Total 
+    { 
+        get { return _total; }
+        set { _total = value; }
+    }
     public Checkout(Dictionary<string, int> prices, Dictionary<string, int> specialPrices)
     {
         this._prices = prices;
@@ -21,14 +25,20 @@ public class Checkout
         if(!string.IsNullOrEmpty(item) && containsOnlyLetters)
         {
             AddItemToItemList(item);
+            Total = _prices[item];
         }
     }
     private void AddItemToItemList(string item)
     {
-        ItemList[item] = ItemList.TryGetValue(item, out int value) ? value + 1: 1;
+        int quantity = ItemList.TryGetValue(item, out int value) ? value + 1: 1;
+        ItemList[item] = quantity;
     }
     public int GetTotalPrice()
     {
-        return this._total;
+        /*if(ItemList.Count > 0)
+        {
+            return Total;
+        }*/
+        return Total;
     }
 }

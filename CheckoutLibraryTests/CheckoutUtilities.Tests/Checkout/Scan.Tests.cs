@@ -4,12 +4,21 @@ namespace CheckoutLibraryTests;
 [TestClass]
 public class ScanTests
 {
-    Dictionary<string, int> prices = new Dictionary<string, int>();
+    Dictionary<string, int> prices = new Dictionary<string, int>()
+    {
+        {"A", 30},
+        {"ABC", 100}
+    };
     Dictionary<string, int> specialPrices = new Dictionary<string, int>();
     //Happy Tests
     [TestMethod]
     public void ScanMethod_When_Passed_Single_Correct_Character_Adds_Item_To_ItemList()
     {
+        Dictionary<string, int> prices = new Dictionary<string, int>()
+        {
+            {"A", 30}
+        };
+        Dictionary<string, int> specialPrices = new Dictionary<string, int>();
         Checkout checkout = new Checkout(prices, specialPrices);
         checkout.Scan("A");
         bool IsInItemList = checkout.ItemList.ContainsKey("A");
