@@ -19,19 +19,33 @@ public class Checkout
         this._prices = prices;
         this._specialPrices = specialPrices;
     }
+    private bool ContainsOnlyLetters(string item)
+    {
+        return Regex.IsMatch(item, RegexPatterns.LettersOnly);
+    }
     public void Scan(string item)
     {
-        bool containsOnlyLetters = Regex.IsMatch(item, RegexPatterns.LettersOnly);
-        if(!string.IsNullOrEmpty(item) && containsOnlyLetters)
+        if(!string.IsNullOrEmpty(item) && ContainsOnlyLetters(item))
         {
             AddItemToItemList(item);
-            Total += _prices[item];
+            AddToTotal(item);
         }
+    }
+    private int GetPrice(string item)
+    {
+        return _prices[item];
+    }
+    private void AddToTotal(string item)
+    {
+        Total += GetPrice(item);
+    }
+    private int GetQuantity(string item)
+    {
+        return ItemList.TryGetValue(item, out int value) ? value + 1: 1;
     }
     private void AddItemToItemList(string item)
     {
-        int quantity = ItemList.TryGetValue(item, out int value) ? value + 1: 1;
-        ItemList[item] = quantity;
+        ItemList[item] = GetQuantity(item);
     }
     public int GetTotalPrice()
     {
