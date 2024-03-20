@@ -50,7 +50,7 @@ public class Checkout
     }
     private int CalculateSavings(string item, int quantity, int specialPrice)
     {
-            return GetPrice(item) - specialPrice;
+            return GetPrice(item)*quantity - specialPrice;
     }
     public int GetTotalPrice()
     {
