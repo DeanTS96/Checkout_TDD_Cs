@@ -63,7 +63,7 @@ public class Checkout
         int numOfDeals = itemQuantity / specialPriceQuantity;
         return numOfDeals*CalculateSavingsPerDeal(item, specialPriceQuantity, specialPricePrice);
     }
-    public int GetTotalPrice()
+    private void CalculateTotalSavings()
     {
         foreach(KeyValuePair<string, int> pair in ItemList)
         {
@@ -76,6 +76,10 @@ public class Checkout
                 Savings += CalculateTotalSavingsForItem(item, itemQuantity, specialPriceQuantity, specialPricePrice);
             }
         }
+    }
+    public int GetTotalPrice()
+    {
+        CalculateTotalSavings();
         return Total-Savings;
     }
 }
