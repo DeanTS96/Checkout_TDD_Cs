@@ -54,6 +54,14 @@ public class Checkout
             (string item, int quantity) = pair;
             Total += _prices[item];
         }*/
+        if(_specialPrices.TryGetValue("A", out Dictionary<string, int> ?value))
+        {
+            int quantityNeeded = value["quantity"];
+            int specialPrice = value["price"];
+            int normalPrice = GetPrice("A");
+            int savings = normalPrice - specialPrice;
+            Total -= savings;
+        }
         return Total;
     }
 }
