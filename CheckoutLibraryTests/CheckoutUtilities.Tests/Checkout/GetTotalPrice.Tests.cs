@@ -172,5 +172,66 @@ public class GetTotalPriceTests
 
         Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
     }
+    [TestMethod]
+    public void Method_Returns_Total_Price_When_Passed_A_More_Complex_Operation()
+    {
+        Dictionary<string, int> prices = new Dictionary<string, int>()
+        {
+            {"A", 30},
+            {"B", 50},
+            {"C", 90},
+            {"E", 10},
+            {"F", 200},
+            {"G", 120},
+        };
+        Dictionary<string, Dictionary<string, int>> specialPrices = new Dictionary<string, Dictionary<string, int>>()
+        {
+            {"A", new Dictionary<string, int>
+                {
+                   {"quantity", 1}, 
+                   {"price", 20},
+                }
+            },
+            {"B", new Dictionary<string, int>
+                {
+                   {"quantity", 1}, 
+                   {"price", 40},
+                }
+            },
+            {"C", new Dictionary<string, int>
+                {
+                   {"quantity", 2}, 
+                   {"price", 150},
+                }
+            },
+            {"F", new Dictionary<string, int>
+                {
+                   {"quantity", 3}, 
+                   {"price", 400},
+                }
+            },
+            {"G", new Dictionary<string, int>
+                {
+                   {"quantity", 2}, 
+                   {"price", 200},
+                }
+            }
+        };
+        Checkout checkout = new Checkout(prices, specialPrices);
+        checkout.Scan("A");
+        checkout.Scan("A");
+        checkout.Scan("G");
+        checkout.Scan("F");
+        checkout.Scan("F");
+        checkout.Scan("E");
+        checkout.Scan("C");
+        checkout.Scan("C");
+        checkout.Scan("F");
+        checkout.Scan("E");
+        int expected = 730;
+        int actual = checkout.GetTotalPrice();
+
+        Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
+    }
     //Bad Tests
 }
