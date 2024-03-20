@@ -48,6 +48,10 @@ public class Checkout
         int itemQuantity = GetQuantity(item);
         ItemList[item] = itemQuantity > 0 ? itemQuantity + 1: 1;
     }
+    private int CalculateSavings(int quantity, int specialPrice)
+    {
+            return GetPrice("A") - specialPrice;
+    }
     public int GetTotalPrice()
     {
         /*foreach(KeyValuePair<string, int> pair in ItemList)
@@ -57,11 +61,7 @@ public class Checkout
         }*/
         if(_specialPrices.TryGetValue("A", out Dictionary<string, int> ?value))
         {
-            int quantityNeeded = value["quantity"];
-            int specialPrice = value["price"];
-            int normalPrice = GetPrice("A");
-            int savings = normalPrice - specialPrice;
-            Total -= savings;
+            Total -= CalculateSavings(value["quantity"], value["price"]);
         }
         return Total;
     }
