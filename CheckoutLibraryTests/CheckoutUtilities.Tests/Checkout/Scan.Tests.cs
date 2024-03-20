@@ -9,7 +9,7 @@ public class ScanTests
         {"A", 30},
         {"ABC", 100}
     };
-    Dictionary<string, int> specialPrices = new Dictionary<string, int>();
+    Dictionary<string, Dictionary<string, int>> specialPrices = new Dictionary<string, Dictionary<string, int>>();
     //Happy Tests
     [TestMethod]
     public void ScanMethod_When_Passed_Single_Correct_Character_Adds_Item_To_ItemList()
@@ -18,7 +18,7 @@ public class ScanTests
         {
             {"A", 30}
         };
-        Dictionary<string, int> specialPrices = new Dictionary<string, int>();
+        Dictionary<string, Dictionary<string, int>> specialPrices = new Dictionary<string, Dictionary<string, int>>();
         Checkout checkout = new Checkout(prices, specialPrices);
         checkout.Scan("A");
         bool IsInItemList = checkout.ItemList.ContainsKey("A");

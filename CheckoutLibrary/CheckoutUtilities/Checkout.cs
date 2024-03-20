@@ -6,7 +6,7 @@ public class Checkout
 {
     private int _total = 0;
     private readonly Dictionary<string, int> _prices;
-    private readonly Dictionary<string, int> _specialPrices;
+    private readonly Dictionary<string, Dictionary<string, int>> _specialPrices;
     public readonly Dictionary<string, int> ItemList = new Dictionary<string, int>();
 
     public int Total 
@@ -14,7 +14,7 @@ public class Checkout
         get { return _total; }
         set { _total = value; }
     }
-    public Checkout(Dictionary<string, int> prices, Dictionary<string, int> specialPrices)
+    public Checkout(Dictionary<string, int> prices, Dictionary<string, Dictionary<string, int>> specialPrices)
     {
         this._prices = prices;
         this._specialPrices = specialPrices;
