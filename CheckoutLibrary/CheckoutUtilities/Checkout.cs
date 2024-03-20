@@ -27,7 +27,7 @@ public class Checkout
     {
         if(!string.IsNullOrEmpty(item) && ContainsOnlyLetters(item))
         {
-            AddItemToItemList(item);
+            AddItemQuantityToItemList(item);
             AddToTotal(item);
         }
     }
@@ -41,11 +41,12 @@ public class Checkout
     }
     private int GetQuantity(string item)
     {
-        return ItemList.TryGetValue(item, out int value) ? value + 1: 1;
+        return ItemList.TryGetValue(item, out int value) ? value: 0;
     }
-    private void AddItemToItemList(string item)
+    private void AddItemQuantityToItemList(string item)
     {
-        ItemList[item] = GetQuantity(item);
+        int itemQuantity = GetQuantity(item);
+        ItemList[item] = itemQuantity > 0 ? itemQuantity + 1: 1;
     }
     public int GetTotalPrice()
     {
