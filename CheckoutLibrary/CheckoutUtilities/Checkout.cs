@@ -35,10 +35,6 @@ public class Checkout
     }
     public int GetTotalPrice()
     {
-        /*if(ItemList.Count > 0)
-        {
-            return Total;
-        }*/
         return Total;
     }
 }

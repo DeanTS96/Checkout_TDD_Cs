@@ -34,5 +34,24 @@ public class GetTotalPriceTests
 
         Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
     }
+        [TestMethod]
+    public void Method_Returns_Correct_Ammount_When_Multiple_Items_Have_Been_Scanned()
+    {
+        Dictionary<string, int> prices = new Dictionary<string, int>()
+        {
+            {"A", 30},
+            {"B", 20},
+            {"C", 60}
+        };
+        Dictionary<string, int> specialPrices = new Dictionary<string, int>();
+        Checkout checkout = new Checkout(prices, specialPrices);
+        checkout.Scan("A");
+        checkout.Scan("B");
+        checkout.Scan("B");
+        int expected = 70;
+        int actual = checkout.GetTotalPrice();
+
+        Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
+    }
     //Bad Tests
 }
