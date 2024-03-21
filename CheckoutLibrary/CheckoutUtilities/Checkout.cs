@@ -31,10 +31,9 @@ public class Checkout
     public Checkout(Dictionary<string, int> prices, Dictionary<string, Dictionary<string, int>> specialPrices)
     {
         this._prices = prices;
-        //this.Prices = prices;
         this._specialPrices = specialPrices;
     }
-    private bool ContainsOnlyLetters(string item)
+    private static bool ContainsOnlyLetters(string item)
     {
         return Regex.IsMatch(item, RegexPatterns.LettersOnly);
     }
