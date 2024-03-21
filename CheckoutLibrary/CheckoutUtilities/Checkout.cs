@@ -20,9 +20,18 @@ public class Checkout
         get { return _savings; }
         set { _savings = value; }
     }
+    public Dictionary<string, int> Prices 
+    { 
+        get { return _prices; }
+    }
+    public Dictionary<string, Dictionary<string, int>> SpecialPrices 
+    { 
+        get { return _specialPrices; }
+    }
     public Checkout(Dictionary<string, int> prices, Dictionary<string, Dictionary<string, int>> specialPrices)
     {
         this._prices = prices;
+        //this.Prices = prices;
         this._specialPrices = specialPrices;
     }
     private bool ContainsOnlyLetters(string item)
@@ -39,7 +48,7 @@ public class Checkout
     }
     private int GetPrice(string item)
     {
-        return _prices[item];
+        return Prices[item];
     }
     private void AddToTotal(string item)
     {
@@ -69,7 +78,7 @@ public class Checkout
         {
             string item = pair.Key;
             int itemQuantity = pair.Value;
-            if(_specialPrices.TryGetValue(item, out Dictionary<string, int> ?specialPrice))
+            if(SpecialPrices.TryGetValue(item, out Dictionary<string, int> ?specialPrice))
             {
                 Savings += CalculateTotalSavingsForItem(item, itemQuantity, specialPrice["quantity"], specialPrice["price"]);
             }
