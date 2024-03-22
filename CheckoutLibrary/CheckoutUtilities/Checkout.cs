@@ -102,10 +102,13 @@ public class Checkout
             }
         }
     }
+    private int NumberOfBagsNeeded()
+    {
+        return (int)Math.Ceiling((double)NumberOfItems/BagCarryCapacity);
+    }
     private int CalculateCostOfBags()
     {
-        int numberOfBags = (int)Math.Ceiling((double)NumberOfItems/BagCarryCapacity);
-        return BagPrice*numberOfBags;
+        return BagPrice*NumberOfBagsNeeded();
     }
     public int GetTotalPrice()
     {
