@@ -6,8 +6,11 @@ public class Checkout
 {
     private int _total = 0;
     private int _savings = 0;
+    private int _numberOfItems = 0;
     private readonly Dictionary<string, int> _prices;
     private readonly Dictionary<string, Dictionary<string, int>> _specialPrices;
+    private readonly int _bagPrice;
+    private readonly int _bagCarryCapacity;
     public readonly Dictionary<string, int> ItemList = new Dictionary<string, int>();
 
     public int Total 
@@ -20,12 +23,35 @@ public class Checkout
         get { return _savings; }
         set { _savings = value; }
     }
-    public Checkout(Dictionary<string, int> prices, Dictionary<string, Dictionary<string, int>> specialPrices)
+    public int NumberOfItems
+    { 
+        get { return _numberOfItems; }
+        set { _numberOfItems = value; }
+    }
+    public Dictionary<string, int> Prices 
+    { 
+        get { return _prices; }
+    }
+    public Dictionary<string, Dictionary<string, int>> SpecialPrices 
+    { 
+        get { return _specialPrices; }
+    }
+        public int BagPrice 
+    { 
+        get { return _bagPrice; }
+    }
+        public int BagCarryCapacity 
+    { 
+        get { return _bagCarryCapacity; }
+    }
+    public Checkout(Dictionary<string, int> prices, Dictionary<string, Dictionary<string, int>> specialPrices, int bagPrice = 0, int bagCarryCapacity = 0)
     {
         this._prices = prices;
         this._specialPrices = specialPrices;
+        this._bagPrice = bagPrice;
+        this._bagCarryCapacity = bagCarryCapacity;
     }
-    private bool ContainsOnlyLetters(string item)
+    private static bool ContainsOnlyLetters(string item)
     {
         return Regex.IsMatch(item, RegexPatterns.LettersOnly);
     }
@@ -35,11 +61,16 @@ public class Checkout
         {
             AddItemQuantityToItemList(item);
             AddToTotal(item);
+            AddtoTotalNumberOfItems();
         }
+    }
+    private void AddtoTotalNumberOfItems()
+    {
+        NumberOfItems++;
     }
     private int GetPrice(string item)
     {
-        return _prices[item];
+        return Prices[item];
     }
     private void AddToTotal(string item)
     {
@@ -69,15 +100,23 @@ public class Checkout
         {
             string item = pair.Key;
             int itemQuantity = pair.Value;
-            if(_specialPrices.TryGetValue(item, out Dictionary<string, int> ?specialPrice))
+            if(SpecialPrices.TryGetValue(item, out Dictionary<string, int> ?specialPrice))
             {
                 Savings += CalculateTotalSavingsForItem(item, itemQuantity, specialPrice["quantity"], specialPrice["price"]);
             }
         }
     }
+    private int NumberOfBagsNeeded()
+    {
+        return (int)Math.Ceiling((double)NumberOfItems/BagCarryCapacity);
+    }
+    private int CalculateCostOfBags()
+    {
+        return BagPrice*NumberOfBagsNeeded();
+    }
     public int GetTotalPrice()
     {
         CalculateTotalSavings();
-        return Total-Savings;
+        return CalculateCostOfBags()+Total-Savings;
     }
 }
