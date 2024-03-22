@@ -6,6 +6,7 @@ public class Checkout
 {
     private int _total = 0;
     private int _savings = 0;
+    private int _numberOfItems = 0;
     private readonly Dictionary<string, int> _prices;
     private readonly Dictionary<string, Dictionary<string, int>> _specialPrices;
     private readonly int _bagPrice;
@@ -21,6 +22,11 @@ public class Checkout
     { 
         get { return _savings; }
         set { _savings = value; }
+    }
+    public int NumberOfItems
+    { 
+        get { return _numberOfItems; }
+        set { _numberOfItems = value; }
     }
     public Dictionary<string, int> Prices 
     { 
@@ -55,6 +61,7 @@ public class Checkout
         {
             AddItemQuantityToItemList(item);
             AddToTotal(item);
+            NumberOfItems += 1;
         }
     }
     private int GetPrice(string item)
@@ -98,6 +105,7 @@ public class Checkout
     public int GetTotalPrice()
     {
         CalculateTotalSavings();
-        return Total-Savings;
+        int costOfBags = BagPrice*NumberOfItems;
+        return costOfBags+Total-Savings;
     }
 }
