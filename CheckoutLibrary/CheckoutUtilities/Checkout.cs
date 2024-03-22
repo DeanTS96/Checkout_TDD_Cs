@@ -105,7 +105,8 @@ public class Checkout
     public int GetTotalPrice()
     {
         CalculateTotalSavings();
-        int costOfBags = BagPrice*NumberOfItems;
+        int numberOfBags = (int)Math.Ceiling((double)NumberOfItems/BagCarryCapacity);
+        int costOfBags = BagPrice*numberOfBags;
         return costOfBags+Total-Savings;
     }
 }
