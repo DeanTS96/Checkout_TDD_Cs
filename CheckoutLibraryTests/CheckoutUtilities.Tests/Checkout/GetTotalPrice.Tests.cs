@@ -293,7 +293,7 @@ public class GetTotalPriceTests
         Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
     }
     [TestMethod]
-    public void Method_Returns_Correct_Price_When_Two_BagsAre_Needed()
+    public void Method_Returns_Correct_Price_When_Two_Bags_Are_Needed()
     {
         Dictionary<string, int> prices = new Dictionary<string, int>()
         {
@@ -310,6 +310,35 @@ public class GetTotalPriceTests
         checkout.Scan("A");
         checkout.Scan("A");
         int expected = 20;
+        int actual = checkout.GetTotalPrice();
+
+        Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
+    }
+        [TestMethod]
+    public void Method_Returns_Correct_Price_When_Three_Bags_Are_Needed_And_Items_Scanned_Have_A_Price()
+    {
+        Dictionary<string, int> prices = new Dictionary<string, int>()
+        {
+            {"A", 20},
+            {"B", 50}
+        };
+        Dictionary<string, Dictionary<string, int>> specialPrices = new Dictionary<string, Dictionary<string, int>>();
+        int bagPrice = 10;
+        int bagCarryCapacity = 5;
+        Checkout checkout = new Checkout(prices, specialPrices, bagPrice, bagCarryCapacity);
+        checkout.Scan("A");
+        checkout.Scan("A");
+        checkout.Scan("A");
+        checkout.Scan("A");
+        checkout.Scan("A");
+        checkout.Scan("A");
+        checkout.Scan("B");
+        checkout.Scan("B");
+        checkout.Scan("B");
+        checkout.Scan("B");
+        checkout.Scan("B");
+        checkout.Scan("B");
+        int expected = 450;
         int actual = checkout.GetTotalPrice();
 
         Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
