@@ -61,8 +61,12 @@ public class Checkout
         {
             AddItemQuantityToItemList(item);
             AddToTotal(item);
-            NumberOfItems += 1;
+            AddtoTotalNumberOfItems();
         }
+    }
+    private void AddtoTotalNumberOfItems()
+    {
+        NumberOfItems += 1;
     }
     private int GetPrice(string item)
     {
