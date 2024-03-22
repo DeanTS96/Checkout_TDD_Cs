@@ -79,6 +79,7 @@ class Program
             }
             checkout.Scan(item);
         }while(true);
-        Console.WriteLine(checkout.GetTotalPrice());
+        string formattedString = String.Format("Your total is: {0}. You saved: {1}", checkout.GetTotalPrice(), checkout.GetTotalPrice());
+        Console.WriteLine(formattedString);
     }
 }
