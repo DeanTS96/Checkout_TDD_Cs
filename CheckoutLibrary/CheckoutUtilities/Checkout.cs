@@ -102,11 +102,14 @@ public class Checkout
             }
         }
     }
+    private int CalculateCostOfBags()
+    {
+        int numberOfBags = (int)Math.Ceiling((double)NumberOfItems/BagCarryCapacity);
+        return BagPrice*numberOfBags;
+    }
     public int GetTotalPrice()
     {
         CalculateTotalSavings();
-        int numberOfBags = (int)Math.Ceiling((double)NumberOfItems/BagCarryCapacity);
-        int costOfBags = BagPrice*numberOfBags;
-        return costOfBags+Total-Savings;
+        return CalculateCostOfBags()+Total-Savings;
     }
 }
