@@ -66,7 +66,7 @@ public class Checkout
     }
     private void AddtoTotalNumberOfItems()
     {
-        NumberOfItems += 1;
+        NumberOfItems++;
     }
     private int GetPrice(string item)
     {
