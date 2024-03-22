@@ -259,7 +259,7 @@ public class GetTotalPriceTests
         Assert.AreEqual(expected, actual, $"Scanned item is added to ItemList. EXPECTED: {expected}; ACTUAL: {actual}");
     }
     //Bag Dependancy Injection Tests
-        [TestMethod]
+    [TestMethod]
     public void Method_Returns_0_When_No_Items_Have_Been_Scanned_So_No_Bags_Are_Needed()
     {
         Dictionary<string, int> prices = new Dictionary<string, int>()
@@ -267,9 +267,9 @@ public class GetTotalPriceTests
             {"A", 30}
         };
         Dictionary<string, Dictionary<string, int>> specialPrices = new Dictionary<string, Dictionary<string, int>>();
-        int badPrice = 10;
+        int bagPrice = 10;
         int bagCarryCapacity = 5;
-        Checkout checkout = new Checkout(prices, specialPrices, badPrice, bagCarryCapacity);
+        Checkout checkout = new Checkout(prices, specialPrices, bagPrice, bagCarryCapacity);
         int expected = 0;
         int actual = checkout.GetTotalPrice();
 

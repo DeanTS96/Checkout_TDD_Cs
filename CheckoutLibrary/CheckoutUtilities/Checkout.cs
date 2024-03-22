@@ -8,6 +8,8 @@ public class Checkout
     private int _savings = 0;
     private readonly Dictionary<string, int> _prices;
     private readonly Dictionary<string, Dictionary<string, int>> _specialPrices;
+    private readonly int _bagPrice;
+    private readonly int _bagCarryCapacity;
     public readonly Dictionary<string, int> ItemList = new Dictionary<string, int>();
 
     public int Total 
@@ -28,10 +30,20 @@ public class Checkout
     { 
         get { return _specialPrices; }
     }
-    public Checkout(Dictionary<string, int> prices, Dictionary<string, Dictionary<string, int>> specialPrices)
+        public int BagPrice 
+    { 
+        get { return _bagPrice; }
+    }
+        public int BagCarryCapacity 
+    { 
+        get { return _bagCarryCapacity; }
+    }
+    public Checkout(Dictionary<string, int> prices, Dictionary<string, Dictionary<string, int>> specialPrices, int bagPrice = 0, int bagCarryCapacity = 0)
     {
         this._prices = prices;
         this._specialPrices = specialPrices;
+        this._bagPrice = bagPrice;
+        this._bagCarryCapacity = bagCarryCapacity;
     }
     private static bool ContainsOnlyLetters(string item)
     {
