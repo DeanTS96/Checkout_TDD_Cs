@@ -69,7 +69,18 @@ class Program
         int bagPrice = 5;
         int bagCarryCapacity = 5;
         Checkout checkout = new Checkout(prices, specialPrices, bagPrice, bagCarryCapacity);
-        Console.WriteLine("Please Scan Your Items... ");
+        Console.WriteLine("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        Console.WriteLine("*                                                                 *");
+        Console.WriteLine("*                      Welcome To Checkout!                       *");
+        Console.WriteLine("*                                                                 *");
+        Console.WriteLine("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        Console.WriteLine(Environment.NewLine);
+        Console.WriteLine("Please scan your items by entering a single lettter... ");
+        Console.WriteLine("and then pressing enter (enter only single capital letters)");
+        Console.WriteLine(Environment.NewLine);
+        Console.WriteLine("When you are finished scanning your items, just press Enter");
+        Console.WriteLine(Environment.NewLine);
+
         do
         {
             string ?item = Console.ReadLine();
@@ -79,7 +90,13 @@ class Program
             }
             checkout.Scan(item);
         }while(true);
-        string formattedString = String.Format("Your total is: {0}. You saved: {1}", checkout.GetTotalPrice(), checkout.GetTotalPrice());
+        string formattedString = String.Format("*         Your total is: {0}           You saved: {1}             *", checkout.GetTotalPrice(), checkout.GetTotalPrice());
+        Console.WriteLine("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+        Console.WriteLine("*                                                                 *");
+        Console.WriteLine("*                  Thank You For Using Checkout                   *");
+        Console.WriteLine("*                                                                 *");
         Console.WriteLine(formattedString);
+        Console.WriteLine("*                                                                 *");
+        Console.WriteLine("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
     }
 }
