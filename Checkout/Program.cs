@@ -64,6 +64,48 @@ class Program
                    {"quantity", 2}, 
                    {"price", 60},
                 }
+            },
+            {"N", new Dictionary<string, int>
+                {
+                   {"quantity", 1}, 
+                   {"price", 40},
+                }
+            },
+            {"O", new Dictionary<string, int>
+                {
+                   {"quantity", 1}, 
+                   {"price", 25},
+                }
+            },
+            {"P", new Dictionary<string, int>
+                {
+                   {"quantity", 1}, 
+                   {"price", 45},
+                }
+            },
+            {"Q", new Dictionary<string, int>
+                {
+                   {"quantity", 1}, 
+                   {"price", 55},
+                }
+            },
+            {"R", new Dictionary<string, int>
+                {
+                   {"quantity", 1}, 
+                   {"price", 35},
+                }
+            },
+            {"S", new Dictionary<string, int>
+                {
+                   {"quantity", 1}, 
+                   {"price", 100},
+                }
+            },
+            {"T", new Dictionary<string, int>
+                {
+                   {"quantity", 1}, 
+                   {"price", 115},
+                }
             }
         };
         int bagPrice = 5;
