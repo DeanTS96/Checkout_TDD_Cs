@@ -90,7 +90,7 @@ class Program
             }
             checkout.Scan(item);
         }while(true);
-        string formattedString = String.Format("*         Your total is: {0}           You saved: {1}             *", checkout.GetTotalPrice(), checkout.GetTotalPrice());
+        string formattedString = String.Format("*           Your total is: {0}           You saved: {1}            *", checkout.GetTotalPrice(), checkout.Savings);
         Console.WriteLine("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
         Console.WriteLine("*                                                                 *");
         Console.WriteLine("*                  Thank You For Using Checkout                   *");
