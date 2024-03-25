@@ -51,13 +51,13 @@ public class Checkout
         this._bagPrice = bagPrice;
         this._bagCarryCapacity = bagCarryCapacity;
     }
-    private static bool ContainsOnlyLetters(string item)
+    private static bool IsSingleCapitalLetter(string item)
     {
-        return Regex.IsMatch(item, RegexPatterns.LettersOnly);
+        return Regex.IsMatch(item, RegexPatterns.SingleCapitalOnly);
     }
     public void Scan(string item)
     {
-        if(!string.IsNullOrEmpty(item) && ContainsOnlyLetters(item))
+        if(!string.IsNullOrEmpty(item) && IsSingleCapitalLetter(item))
         {
             AddItemQuantityToItemList(item);
             AddToTotal(item);
